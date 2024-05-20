@@ -1,0 +1,36 @@
+#define LED_COUNT 4
+#define BUTTON 15
+
+int vector_aehhh[LED_COUNT] = {2, 0, 16, 5};
+int gru[LED_COUNT] = {19, 21, 22, 23};
+
+void setup() {
+ for (int i = 0; i < LED_COUNT; i++) {
+  pinMode(vector_aehhh[i], OUTPUT);
+  pinMode(gru[i], OUTPUT);
+ }
+ pinMode(BUTTON, INPUT_PULLUP);
+}
+
+void loop() {
+while (digitalRead(BUTTON) == HIGH) {
+  int i = 0;
+  while (i < LED_COUNT){
+   digitalWrite(vector_aehhh[i], HIGH);
+   digitalWrite(gru[LED_COUNT - 1 - i], HIGH);
+   delay(500);
+   digitalWrite(vector_aehhh[i], LOW);
+   digitalWrite(gru[LED_COUNT - 1 - i], LOW);
+   i++ ; 
+  }
+}
+  int i = 0;
+  while (i < LED_COUNT){
+   digitalWrite(vector_aehhh[i], HIGH);
+   digitalWrite(gru[i], HIGH);
+   delay(500);
+   digitalWrite(vector_aehhh[i], LOW);
+   digitalWrite(gru[i], LOW);
+   i++ ; 
+}
+}
