@@ -1,0 +1,138 @@
+// --------------- BIBLIOTECAS -------------------
+
+
+#include <Button.h>
+
+
+
+// --------------- DEFINICOES -------------------
+#define primeiroPinoAmarelo 23
+#define segundoPinoAmarelo 21
+#define primeiroPinoLaranja 18
+#define segundoPinoLaranja 17
+#define terceiroPinoLaranja 4
+#define pinosVerdes 27
+#define pinosVermelhos 25
+#define pinBotao 15
+
+// --------------- VARIAVEIS -------------------
+
+const int tempoEspera = 500;
+unsigned long tempoAnterior = 0;
+unsigned long tempoAtual = 0;
+int posicao = 0;
+bool ativacao = 1;
+
+// --------------- INSTANCIAS -------------------
+Button botao (pinBotao);
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(pinBotao, INPUT_PULLUP);
+  pinMode(primeiroPinoAmarelo, OUTPUT);
+  pinMode(segundoPinoAmarelo, OUTPUT);
+  pinMode(primeiroPinoLaranja, OUTPUT);
+  pinMode(segundoPinoLaranja, OUTPUT);
+  pinMode(terceiroPinoLaranja, OUTPUT);
+  pinMode(pinosVerdes, OUTPUT);
+  pinMode(pinosVermelhos, OUTPUT);
+}
+
+void loop() {
+  tempoAtual = millis();
+
+  if (tempoAtual >= (tempoAnterior + tempoEspera))
+  {
+    Serial.println(posicao);
+    posicao++;
+    if (posicao == 12) posicao = 1;
+    tempoAnterior = tempoAtual;
+
+  }
+  if (botao.pressed()) {
+    ativacao = !ativacao;
+    posicao = 0;
+  } 
+
+  if (ativacao)
+  {
+
+    switch (posicao) // vai analisar a variavel colocada entre paresenteses
+    {
+      case 1:
+
+        digitalWrite(primeiroPinoAmarelo, HIGH);
+        digitalWrite(segundoPinoAmarelo, LOW);
+        digitalWrite(primeiroPinoLaranja, LOW);
+        digitalWrite(segundoPinoLaranja, LOW);
+        digitalWrite(terceiroPinoLaranja, LOW);
+        digitalWrite(pinosVerdes, LOW);
+        digitalWrite(pinosVermelhos, LOW);
+
+        break;
+      case 3:
+
+        digitalWrite(primeiroPinoAmarelo, LOW);
+        digitalWrite(segundoPinoAmarelo, HIGH);
+        digitalWrite(primeiroPinoLaranja, LOW);
+        digitalWrite(segundoPinoLaranja, LOW);
+        digitalWrite(terceiroPinoLaranja, LOW);
+        digitalWrite(pinosVerdes, LOW);
+        digitalWrite(pinosVermelhos, LOW);
+
+        break;
+      case 5:
+
+        digitalWrite(primeiroPinoAmarelo, LOW);
+        digitalWrite(segundoPinoAmarelo, LOW);
+        digitalWrite(primeiroPinoLaranja, HIGH);
+        digitalWrite(segundoPinoLaranja, LOW);
+        digitalWrite(terceiroPinoLaranja, LOW);
+        digitalWrite(pinosVerdes, LOW);
+        digitalWrite(pinosVermelhos, LOW);
+
+        break;
+      case 7:
+
+        digitalWrite(primeiroPinoAmarelo, LOW);
+        digitalWrite(segundoPinoAmarelo, LOW);
+        digitalWrite(primeiroPinoLaranja, LOW);
+        digitalWrite(segundoPinoLaranja, HIGH);
+        digitalWrite(terceiroPinoLaranja, LOW);
+        digitalWrite(pinosVerdes, LOW);
+        digitalWrite(pinosVermelhos, LOW);
+
+        break;
+      case 9:
+
+        digitalWrite(primeiroPinoAmarelo, LOW);
+        digitalWrite(segundoPinoAmarelo, LOW);
+        digitalWrite(primeiroPinoLaranja, LOW);
+        digitalWrite(segundoPinoLaranja, LOW);
+        digitalWrite(terceiroPinoLaranja, HIGH);
+        digitalWrite(pinosVerdes, LOW);
+        digitalWrite(pinosVermelhos, LOW);
+
+        break;
+      case 11:
+
+        digitalWrite(primeiroPinoAmarelo, LOW);
+        digitalWrite(segundoPinoAmarelo, LOW);
+        digitalWrite(primeiroPinoLaranja, LOW);
+        digitalWrite(segundoPinoLaranja, LOW);
+        digitalWrite(terceiroPinoLaranja, LOW);
+        digitalWrite(pinosVerdes, HIGH);
+        digitalWrite(pinosVermelhos, LOW); 
+    }
+  }
+  else {
+   digitalWrite(pinosVermelhos, HIGH);
+   digitalWrite(primeiroPinoAmarelo, LOW);
+   digitalWrite(segundoPinoAmarelo, LOW);
+   digitalWrite(primeiroPinoLaranja, LOW);
+   digitalWrite(segundoPinoLaranja, LOW);
+   digitalWrite(terceiroPinoLaranja, LOW);
+   digitalWrite(pinosVerdes, LOW);
+  }
+}
