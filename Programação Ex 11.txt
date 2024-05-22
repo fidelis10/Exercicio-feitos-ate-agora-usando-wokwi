@@ -28,7 +28,6 @@ Button botao (pinBotao);
 
 void setup() {
   Serial.begin(115200);
-  pinMode(pinBotao, INPUT_PULLUP);
   pinMode(primeiroPinoAmarelo, OUTPUT);
   pinMode(segundoPinoAmarelo, OUTPUT);
   pinMode(primeiroPinoLaranja, OUTPUT);
@@ -36,6 +35,7 @@ void setup() {
   pinMode(terceiroPinoLaranja, OUTPUT);
   pinMode(pinosVerdes, OUTPUT);
   pinMode(pinosVermelhos, OUTPUT);
+  botao.begin();
 }
 
 void loop() {
