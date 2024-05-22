@@ -20,7 +20,7 @@
 const int tempoEspera = 500;
 unsigned long tempoAnterior = 0;
 unsigned long tempoAtual = 0;
-int posicao = 0;
+int contagemTempo = 0;
 bool ativacao = 1;
 
 // --------------- INSTANCIAS -------------------
@@ -28,7 +28,6 @@ Button botao (pinBotao);
 
 void setup() {
   Serial.begin(115200);
-
   pinMode(pinBotao, INPUT_PULLUP);
   pinMode(primeiroPinoAmarelo, OUTPUT);
   pinMode(segundoPinoAmarelo, OUTPUT);
@@ -44,21 +43,21 @@ void loop() {
 
   if (tempoAtual >= (tempoAnterior + tempoEspera))
   {
-    Serial.println(posicao);
-    posicao++;
-    if (posicao == 12) posicao = 1;
+    Serial.println(contagemTempo);
+    contagemTempo++;
+    if (contagemTempo == 12) contagemTempo = 1;
     tempoAnterior = tempoAtual;
 
   }
   if (botao.pressed()) {
     ativacao = !ativacao;
-    posicao = 0;
+    contagemTempo = 0;
   } 
 
   if (ativacao)
   {
 
-    switch (posicao) // vai analisar a variavel colocada entre paresenteses
+    switch (contagemTempo) // vai analisar a variavel colocada entre paresenteses
     {
       case 1:
 
