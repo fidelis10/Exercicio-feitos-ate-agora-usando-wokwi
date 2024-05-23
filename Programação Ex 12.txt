@@ -1,0 +1,63 @@
+#include <LiquidCrystal_I2C.h>
+#include <ESP32Servo.h>
+#include <Button.h>
+
+
+
+#define pinPotenciometro 4
+#define pinServo 2
+#define pinLed 27
+#define pinBotao 13
+
+
+int leituraAnalogica = 0;
+int angulo = 0;
+bool ativar  = 0;
+
+LiquidCrystal_I2C lcd (0x27, 20, 4); // endereco do display o 0x27
+Servo servoMotor;
+Button botao (pinBotao);
+
+void setup() {
+  Serial.begin(115200);
+  lcd.init(); // vai inicializar o display
+  servoMotor.attach(pinServo); // inicia o servo no pino pinServo
+  botao.begin();
+
+
+  lcd.backlight(); // vai ligar o display, deixando ele aceso
+  lcd.setCursor(0, 0);
+  lcd.print("Ola mundo!");
+  pinMode(pinLed, OUTPUT);
+}
+
+void loop() {
+  leituraAnalogica = analogRead(pinPotenciometro) ;
+  angulo = leituraAnalogica * 180 / 4095;
+  servoMotor.write(angulo);
+  lcd.setCursor(1, 1);
+  lcd.print(angulo) ;
+  lcd.print(char(223)) ;
+  lcd.print(" ");
+  if (botao.pressed())
+  {
+    ativar = !ativar;
+  }
+  if (ativar)
+  {
+    digitalWrite(pinLed, HIGH);
+    lcd.setCursor(0, 2);
+    lcd.print("Ligado") ;
+    lcd.print("   ");
+  } else
+  {
+    digitalWrite(pinLed, LOW);
+    lcd.setCursor(0, 2);
+    lcd.print("Desligado") ;
+  }
+
+
+
+
+  delay(100);
+}
