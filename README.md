@@ -29,7 +29,7 @@ Ex 10 Foto do circuito ligar um led Wokwi
 
 Ex 11 Foto do circuito Semaforo formula 1 usando switch case
 
-Ex 12 – Ligar uma led atraves de um botão e aparecer no display se a led está ligada ou não. Aparecer também no display quantos graus o potenciômetro está e também gira o Servo Motor de acordo com o potenciômetro 
+Ex 12 Foto do circuito Ligar uma led atraves de um botão e aparecer no display se a led está ligada ou não. Aparecer também no display quantos graus o potenciômetro está e também gira o Servo Motor de acordo com o potenciômetro 
 
 
 Programação Ex 4 Programaçao de Ligar leds em sequencias diferentes e quando apertar o botao, a sequencia ficar igual
